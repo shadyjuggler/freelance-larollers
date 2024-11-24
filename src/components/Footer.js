@@ -15,26 +15,26 @@ export const Footer = () => {
                     <div className="basis-1/4 order-1 lg:order-2">
                         <ul className="flex flex-col gap-6 text-white font-bold text-xl">
                             <li>
-                                <a className="text-2xl" href="">Services</a>
+                                <a className="text-xl md:text-2xl" href="">Services</a>
                             </li>
                             <li>
-                                <a className="text-2xl" href="">Fleet</a>
+                                <a className="text-xl md:text-2xl" href="">Fleet</a>
                             </li>
                             <li>
-                                <a className="text-2xl" href="">Coverage <br /> Area</a>
+                                <a className="text-xl md:text-2xl" href="">Coverage <br /> Area</a>
                             </li>
                             <li>
-                                <a className="text-2xl" href="">FAQ</a>
+                                <a className="text-xl md:text-2xl" href="">FAQ</a>
                             </li>
                         </ul>
                     </div>
                     <div className="mt-12 lg:mt-0 basis-1/4 order-2 lg:order-3">
                         <ul className="flex flex-col gap-6 text-white font-bold text-xl">
-                            <li className="text-2xl flex gap-2">
+                            <li className="text-xl md:text-2xl flex gap-2">
                                 <img src={location} className="w-6" alt="loation" />
                                 West Hollywood, CA
                             </li>
-                            <li className="text-2xl flex gap-2">
+                            <li className="text-xl md:text-2xl flex gap-2">
                                 <img src={phone} className="w-6" alt="phone" />
                                 <span className="helvetia font-bold">+310 270-35 61</span>
                             </li>
