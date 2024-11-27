@@ -17,9 +17,11 @@ import { NumberInput } from "./Inputs/NumberInput";
 import { TimeInput } from "./Inputs/TimeInput";
 import { Dd } from "./Inputs/Dd";
 import { Stop } from "./Inputs/Stop";
-import { Exception } from "sass";
+import { DoubleInput } from "./Layouts/DoubleInput";
+import { TripeInput } from "./Layouts/TripleInput";
+import { Counter } from "./Inputs/Counter";
 
-const formData = [
+const tabData = [
     {
         tabName: "HOURLY"
     },
@@ -30,47 +32,6 @@ const formData = [
         tabName: "ROUNDTRIP"
     }
 ];
-
-const TripeInput = ({ children }) => {
-    useEffect(() => {
-        if (children.length !== 3) {
-            throw new Error("Must provide 3 childrens at TripleInput Component");
-        }
-    }, [])
-    return (
-        <div className="w-full flex gap-4 flex-col sm:flex-row">
-            <div className="w-full sm:basis-1/3">
-                {children[0]}
-            </div>
-            <div className="w-full sm:basis-1/3">
-                {children[1]}
-            </div>
-            <div className="w-full sm:basis-1/3">
-                {children[2]}
-            </div>
-        </div>
-    )
-}
-
-const DoubleInput = ({ children }) => {
-    useEffect(() => {
-        if (children.length !== 2) {
-            throw new Error("Must provide 2 childrens at DoubleInput Component");
-        }
-    }, [])
-    return (
-        <div className="w-full flex gap-4 flex-col sm:flex-row">
-            <div className="w-full sm:basis-1/2">
-                {children[0]}
-            </div>
-            <div className="w-full sm:basis-1/2">
-                {children[1]}
-            </div>
-        </div>
-    )
-}
-
-
 
 export const Book = () => {
     const [currentTab, setCurrentTab] = useState(0);
@@ -106,13 +67,22 @@ export const Book = () => {
             <h2 className="text-4xl">Book your ride</h2>
 
             <div className="mt-8 ride rounded-xl p-4 sm:py-12 sm:px-12">
+
+                {/* Form Switch Tabs */}
                 <div className="tabs flex">
                     {
-                        formData.map((offer, i) => {
-                            return <button key={Math.random()} onClick={() => onTabClick(i)} className={`basis-1/3 pb-2 md:pb-4 flex justify-center text-base mdtext-lg md:text-xl tab ${currentTab === i && "tab_active"}`}>{offer.tabName}</button>
-                        })
+                        tabData.map((offer, i) => (
+                            <button
+                                key={Math.random()}
+                                onClick={() => onTabClick(i)}
+                                className={`basis-1/3 pb-2 md:pb-4 flex justify-center text-base mdtext-lg md:text-xl tab ${currentTab === i && "tab_active"}`}>
+                                {offer.tabName}
+                            </button>
+                        ))
                     }
                 </div>
+
+                {/* Core form inputs */}
                 <div className="mt-12 flex flex-col md:flex-row gap-4 md:gap-8">
                     <div className="basis-3/5">
                         {
@@ -169,14 +139,16 @@ export const Book = () => {
                                         </div>
                                     </div>
                         }
+
+                        {/* Stops list */}
                         <div className={`flex flex-col gap-4 ${stops.length !== 0 && "mt-8"}`}>
 
                             {
                                 Object.entries(stops).map((stop, index) => (
                                     <div key={stop[0]} className="stop helvetia relative">
                                         {stop[1]}
-                                        <div onClick={() => deleteStop(stop[0])} className="absolute cursor-pointer" style={{ top: "13px", right: '-30px' }}>
-                                            <img src={deleteIcon} alt="" />
+                                        <div className="sm:absolute flex justify-end mt-2 sm:mt-0 cursor-pointer sm:top-3 sm:-right-8">
+                                            <img onClick={() => deleteStop(stop[0])} src={deleteIcon} alt="" />
                                         </div>
                                     </div>
                                 ))}
@@ -190,25 +162,15 @@ export const Book = () => {
                     </div>
                     <div className="basis-2/5 flex gap-6 flex-col items-center md:items-end">
 
-
                         <div className="flex w-full md:w-auto justify-start items-center gap-4 md:gap-0 lg:gap-4">
                             <img src={person} alt="person" className="lg:pr-0 md:pr-2 pr-0" />
                             <p className=" colorblue font-bold text-lg">Passnegers Count</p>
-                            <div className=" w-20 lg:w-16 relative ml-auto md:ml-0">
-                                <span onClick={() => setPassengerCount(pasengerCount + 1)} className="w-6 h-1/2 flex bg-purple-200 rounded-tr-lg items-center justify-center cursor-pointer absolute right-0 top-0">+</span>
-                                <span onClick={() => pasengerCount > 0 && setPassengerCount(pasengerCount - 1)} className="w-6 h-1/2 flex bg-purple-100 rounded-br-lg items-center justify-center cursor-pointer absolute right-0 bottom-0">-</span>
-                                <input style={{ outline: "1px solid #1D1DE3" }} type="number" id="number-input" className="pl-4 counter-input" value={pasengerCount} />
-                            </div>
-
+                            <Counter/>
                         </div>
                         <div className="flex w-full md:w-auto justify-start items-center gap-4 md:gap-0 lg:gap-4">
                             <img src={bag} alt="person" className="lg:pr-0 md:pr-2 pr-0" />
                             <p className="colorblue font-bold text-lg">Luggages Number</p>
-                            <div className=" w-20 lg:w-16 relative ml-auto md:ml-0">
-                                <span onClick={() => setBaggageCount(bagCount + 1)} className="w-6 h-1/2 flex bg-purple-200 rounded-tr-lg items-center justify-center cursor-pointer absolute right-0 top-0">+</span>
-                                <span onClick={() => bagCount > 0 && setBaggageCount(bagCount - 1)} className="w-6 h-1/2 flex bg-purple-100 rounded-br-lg items-center justify-center cursor-pointer absolute right-0 bottom-0">-</span>
-                                <input style={{ outline: "1px solid #1D1DE3" }} type="number" id="number-input" className="pl-4 counter-input" value={bagCount} />
-                            </div>
+                            <Counter/>
                         </div>
 
                         <button className="btn w-full md:w-auto mt-4 md:mt-auto">Book Now</button>
