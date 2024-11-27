@@ -12,9 +12,9 @@ import { OneForTwoInput } from "../Layouts/OneForTwoInput";
 export const Stop = ({ stopId }) => {
     return (
         <OneForTwoInput key={stopId} clasName="mb-2">
-                <StringInput icon={stopIcon} placeholder={"Stop In"} />
-                <Dd icon={clock} placeholder={"For"} />
-                <TimeInput icon={time} placeholder={"Time"} />
+                <StringInput name={`Id: ${stopId} - stop_in`} icon={stopIcon} placeholder={"Stop In"} />
+                <Dd name={`Id: ${stopId} - duration`} icon={clock} placeholder={"For"} />
+                <TimeInput name={`Id: ${stopId} - time`} icon={time} placeholder={"Time"} />
         </OneForTwoInput>
     )
 }

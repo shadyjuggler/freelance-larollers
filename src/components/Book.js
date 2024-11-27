@@ -20,6 +20,8 @@ import { Stop } from "./Inputs/Stop";
 import { DoubleInput } from "./Layouts/DoubleInput";
 import { TripeInput } from "./Layouts/TripleInput";
 import { Counter } from "./Inputs/Counter";
+import { randomId } from "./helpers/randomId";
+import { tab } from "@testing-library/user-event/dist/tab";
 
 const tabData = [
     {
@@ -38,6 +40,7 @@ export const Book = () => {
     const [pasengerCount, setPassengerCount] = useState(0);
     const [bagCount, setBaggageCount] = useState(0);
     const [stops, setStops] = useState({});
+    const formRef = useRef(null);
 
     const onTabClick = (i) => {
         setCurrentTab(i);
@@ -52,14 +55,22 @@ export const Book = () => {
     };
 
     const addStop = () => {
-        const stopId = Math.random();
+        const stopId = randomId();
         if (Object.entries(stops).length < 5) {
-            setStops({ ...stops, [stopId]: <Stop id={stopId} /> });
+            setStops({ ...stops, [stopId]: <Stop stopId={stopId} /> });
             console.log(stops);
             console.log(Object.entries(stops));
         } else {
             alert("Maximum of 5 stops reached!");
         }
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData(formRef.current);
+        formData.forEach((value, key) => {
+            console.log(`${key}: ${value}`);
+        });
     }
 
     return (
@@ -83,58 +94,59 @@ export const Book = () => {
                 </div>
 
                 {/* Core form inputs */}
-                <div className="mt-12 flex flex-col md:flex-row gap-4 md:gap-8">
+                <form ref={formRef} onSubmit={handleSubmit} className="mt-12 flex flex-col md:flex-row gap-4 md:gap-8">
+                    <input name={"type"} type="hidden" value={`${tabData[currentTab].tabName}`} />
                     <div className="basis-3/5">
                         {
                             currentTab === 0 ?
                                 <div className="flex flex-col gap-6">
                                     <TripeInput>
-                                        <CalendarInput key={"datekey"} icon={date} placeholder={"Date"} />
-                                        <TimeInput icon={time} placeholder={"Time"} />
-                                        <StringInput icon={clock} placeholder={"Duration"} />
+                                        <CalendarInput icon={date} placeholder={"Date"} />
+                                        <TimeInput name={"time"} icon={time} placeholder={"Time"} />
+                                        <StringInput name={"duration"} icon={clock} placeholder={"Duration"} />
                                     </TripeInput>
                                     <DoubleInput>
-                                        <StringInput icon={location} placeholder={"Pick Up Address"} />
-                                        <StringInput key={Math.random()} icon={location} placeholder={"Drop-off Address"} />
+                                        <StringInput name={"pick_up_address"} icon={location} placeholder={"Pick Up Address"} />
+                                        <StringInput name={"drop_off_address"} key={Math.random()} icon={location} placeholder={"Drop-off Address"} />
                                     </DoubleInput>
                                     <DoubleInput>
-                                        <StringInput icon={gmail} placeholder={"Your Email"} />
-                                        <StringInput icon={phone} placeholder={"Your Phone"} />
+                                        <StringInput name={"email"} icon={gmail} placeholder={"Your Email"} />
+                                        <StringInput name={"phone"} icon={phone} placeholder={"Your Phone"} />
                                     </DoubleInput>
                                 </div>
                                 : currentTab === 1 ?
                                     <div className="flex flex-col gap-6">
                                         <TripeInput>
                                             <CalendarInput key={"datekey"} icon={date} placeholder={"Date"} />
-                                            <TimeInput icon={time} placeholder={"Time"} />
-                                            <StringInput icon={gmail} placeholder={"Email"} />
+                                            <TimeInput name={"time"} icon={time} placeholder={"Time"} />
+                                            <StringInput name={"email"} icon={gmail} placeholder={"Email"} />
 
                                         </TripeInput>
                                         <DoubleInput>
-                                            <StringInput icon={location} placeholder={"Pick Up Address"} />
-                                            <StringInput icon={phone} placeholder={"Your Phone"} />
+                                            <StringInput name={"pick_up_address"} icon={location} placeholder={"Pick Up Address"} />
+                                            <StringInput name={"phone"} icon={phone} placeholder={"Your Phone"} />
 
                                         </DoubleInput>
                                         <DoubleInput>
-                                            <StringInput icon={location} placeholder={"Drop-off Address"} />
-                                            <StringInput icon={name} placeholder={"Your Name"} />
+                                            <StringInput name={"drop_off_address"} icon={location} placeholder={"Drop-off Address"} />
+                                            <StringInput name={"name"} icon={name} placeholder={"Your Name"} />
                                         </DoubleInput>
                                     </div>
                                     :
                                     <div>
                                         <div className="flex flex-col gap-6">
                                             <TripeInput>
-                                                <StringInput icon={gmail} placeholder={"Your Email"} />
-                                                <StringInput icon={phone} placeholder={"Your Phone"} />
-                                                <StringInput icon={name} placeholder={"Your Name"} />
+                                                <StringInput name={"email"} icon={gmail} placeholder={"Your Email"} />
+                                                <StringInput name={"phone"} icon={phone} placeholder={"Your Phone"} />
+                                                <StringInput name={"name"} icon={name} placeholder={"Your Name"} />
                                             </TripeInput>
                                             <DoubleInput>
-                                                <StringInput icon={location} placeholder={"Pick Up Address"} />
+                                                <StringInput name={"pick_up_address"} icon={location} placeholder={"Pick Up Address"} />
                                                 <CalendarInput icon={date} placeholder={"Departure Date"} />
                                             </DoubleInput>
                                             <DoubleInput>
-                                                <StringInput icon={location} placeholder={"Drop-off Address"} />
-                                                <TimeInput icon={time} placeholder={"Time"} />
+                                                <StringInput name={"drop_off_address"} icon={location} placeholder={"Drop-off Address"} />
+                                                <TimeInput name={"time"} icon={time} placeholder={"Time"} />
                                             </DoubleInput>
                                         </div>
                                     </div>
@@ -156,6 +168,7 @@ export const Book = () => {
                         </div>
                         <button
                             onClick={addStop}
+                            type="button"
                             className="mt-4 colorblue text-lg font-black">
                             + add stop
                         </button>
@@ -165,18 +178,18 @@ export const Book = () => {
                         <div className="flex w-full md:w-auto justify-start items-center gap-4 md:gap-0 lg:gap-4">
                             <img src={person} alt="person" className="lg:pr-0 md:pr-2 pr-0" />
                             <p className=" colorblue font-bold text-lg">Passnegers Count</p>
-                            <Counter/>
+                            <Counter name={"passengers"} />
                         </div>
                         <div className="flex w-full md:w-auto justify-start items-center gap-4 md:gap-0 lg:gap-4">
                             <img src={bag} alt="person" className="lg:pr-0 md:pr-2 pr-0" />
                             <p className="colorblue font-bold text-lg">Luggages Number</p>
-                            <Counter/>
+                            <Counter name={"luggage"} />
                         </div>
 
-                        <button className="btn w-full md:w-auto mt-4 md:mt-auto">Book Now</button>
+                        <button type="submit" className="btn w-full md:w-auto mt-4 md:mt-auto">Book Now</button>
 
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     )
