@@ -1,0 +1,15 @@
+<svg width="20.000000" height="20.000000" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip494_108">
+			<rect id="travel-map-location-pin--navigation-map-maps-pin-gps-location--Streamline-Core" rx="0.000000" width="19.333527" height="19.333527" transform="translate(0.333237 0.333237)" fill="white" fill-opacity="0"/>
+		</clipPath>
+	</defs>
+	<rect id="travel-map-location-pin--navigation-map-maps-pin-gps-location--Streamline-Core" rx="0.000000" width="19.333527" height="19.333527" transform="translate(0.333237 0.333237)" fill="#FFFFFF" fill-opacity="0"/>
+	<g clip-path="url(#clip494_108)">
+		<path id="Vector" d="M9.57 18.71C9.57 18.71 3.57 10.39 3.57 6.94C3.57 5.29 4.2 3.7 5.33 2.53C6.45 1.36 7.98 0.71 9.57 0.71C11.16 0.71 12.68 1.36 13.81 2.53C14.94 3.7 15.57 5.29 15.57 6.94C15.57 10.39 9.57 18.71 9.57 18.71Z" stroke="#0000AC" stroke-opacity="1.000000" stroke-width="1.332948" stroke-linejoin="round"/>
+		<path id="Vector" d="M9.57 9.02C8.46 9.02 7.57 8.08 7.57 6.94C7.57 5.79 8.46 4.86 9.57 4.86C10.67 4.86 11.57 5.79 11.57 6.94C11.57 8.08 10.67 9.02 9.57 9.02Z" stroke="#0000AC" stroke-opacity="1.000000" stroke-width="1.332948" stroke-linejoin="round"/>
+	</g>
+</svg>

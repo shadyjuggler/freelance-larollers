@@ -199,18 +199,95 @@ h3 {
 	.tabs {
 		.tab {
 			border-bottom: 3px solid rgb(197, 197, 255);
+
 			&:nth-child(1) {
 				justify-content: start;
 				padding-left: 90px;
 			}
+
 			&:last-child {
 				justify-content: end;
 				padding-right: 90px;
 			}
 		}
+
 		.tab_active {
 			color: #1D1DE3;
 			border-bottom: 3px solid #1D1DE3;
 		}
+	}
+}
+
+@media (max-width: 1024px) {
+	.ride {
+		.tabs {
+			.tab {
+	
+				&:nth-child(1) {
+					padding-left: 40px;
+				}
+	
+				&:last-child {
+					padding-right: 40px;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 640px) {
+	.ride {
+		.tabs {
+			.tab {
+	
+				&:nth-child(1) {
+					padding-left: 0px;
+					justify-content: center;
+				}
+	
+				&:last-child {
+					padding-right: 0px;
+					justify-content: center;
+				}
+			}
+		}
+	}
+}
+
+.colorblue {
+	color: #1D1DE3;
+}
+
+.datepicker-picker {
+	font-family: "Poppins", serif;
+}
+
+/* For most modern browsers */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.counter-input {
+	@apply helvetia bg-gray-50 border-0 text-blue-500 focus:outline-offset-0 focus:!outline-2 focus:outline-blue-500 focus:border-transparent text-base rounded-lg block w-full p-2
+}
+
+.input {
+	@apply bg-gray-50 border border-blue-400 text-blue-500 placeholder:text-blue-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5;
+	font-size: 16px;
+}
+
+.datepicker {
+	@apply h-full;
+
+	div.pointer-events-none.absolute.inset-y-0.left-0.flex.items-center.pl-3 {
+		display: none;
+	}
+
+	input {
+		@apply bg-gray-50 border border-blue-400 text-blue-500 placeholder:text-blue-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5;
+		font-size: 16px;
+		height: 46px;
 	}
 }
