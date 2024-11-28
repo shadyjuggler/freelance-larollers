@@ -6,8 +6,8 @@ export const Dd = ({ icon, placeholder, name }) => {
             </div>
             <select name={name} id="countries" class="helvetia input ">
                 <option selected>{placeholder}</option>
-                <option value="15min">15 minuts</option>
-                <option value="30min">30 minuts</option>
+                <option value="15 min">15 minuts</option>
+                <option value="30 min">30 minuts</option>
                 <option value="1h">1 hour</option>
                 <option value="2h">2 hours</option>
             </select>

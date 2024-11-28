@@ -22,6 +22,9 @@ import { TripeInput } from "./Layouts/TripleInput";
 import { Counter } from "./Inputs/Counter";
 import { randomId } from "./helpers/randomId";
 import { tab } from "@testing-library/user-event/dist/tab";
+import { emailMessage } from "./helpers/emailMessage";
+
+import { fetchPost } from "./helpers/postReq";
 
 const tabData = [
     {
@@ -46,6 +49,7 @@ export const Book = () => {
         setCurrentTab(i);
     }
 
+
     const deleteStop = (index) => {
         const arr = Object.entries(stops);
         console.log(arr);
@@ -65,12 +69,52 @@ export const Book = () => {
         }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(formRef.current);
+
+        const formObject = {};
+
         formData.forEach((value, key) => {
-            console.log(`${key}: ${value}`);
+
+            // Sort stops
+            if (key.split(":")[0] === "stop") {
+
+                // Create the stops object which store all stops Ids and it's details
+                if (!formObject.stops) formObject.stops = {};
+
+                // Get the Id of stop from the input name
+                const stopId = key.split(":")[1];
+
+                // Get the type of stop e.g stop_in | duration | time
+                const stopType = key.split(":")[2];
+
+                // Check if current stop is present withing 'stops' object
+                if (!formObject.stops[stopId]) formObject.stops[stopId] = {};
+
+                // Assign stop detail
+                formObject.stops[stopId][stopType] = value;
+            }
+
+            formObject[key] = value;
         });
+
+        console.log(formObject);
+        console.log(emailMessage(formObject));
+        const html = emailMessage(formObject);
+
+        const body = {
+            subject: formObject.type,
+            message: "very important",
+            html
+        }
+
+        const responce = await fetchPost(
+            process.env.REACT_APP_API_URL,
+            "send-email",
+            JSON.stringify(body)
+        );
+
     }
 
     return (
@@ -101,52 +145,52 @@ export const Book = () => {
                             currentTab === 0 ?
                                 <div className="flex flex-col gap-6">
                                     <TripeInput>
-                                        <CalendarInput icon={date} placeholder={"Date"} />
-                                        <TimeInput name={"time"} icon={time} placeholder={"Time"} />
-                                        <StringInput name={"duration"} icon={clock} placeholder={"Duration"} />
+                                        <CalendarInput key={"calenar_1"} icon={date} placeholder={"Date"} />
+                                        <TimeInput key={"time_1"} name={"time"} icon={time} placeholder={"Time"} />
+                                        <StringInput key={"duration_1"} name={"duration"} icon={clock} placeholder={"Duration"} />
                                     </TripeInput>
                                     <DoubleInput>
-                                        <StringInput name={"pick_up_address"} icon={location} placeholder={"Pick Up Address"} />
-                                        <StringInput name={"drop_off_address"} key={Math.random()} icon={location} placeholder={"Drop-off Address"} />
+                                        <StringInput key={"pick_up_1"} name={"pick_up_address"} icon={location} placeholder={"Pick Up Address"} />
+                                        <StringInput key={"drop_off_1"} name={"drop_off_address"} icon={location} placeholder={"Drop-off Address"} />
                                     </DoubleInput>
                                     <DoubleInput>
-                                        <StringInput name={"email"} icon={gmail} placeholder={"Your Email"} />
-                                        <StringInput name={"phone"} icon={phone} placeholder={"Your Phone"} />
+                                        <StringInput key={"email_1"} name={"email"} icon={gmail} placeholder={"Your Email"} />
+                                        <StringInput key={"phone_1"} name={"phone"} icon={phone} placeholder={"Your Phone"} />
                                     </DoubleInput>
                                 </div>
                                 : currentTab === 1 ?
                                     <div className="flex flex-col gap-6">
                                         <TripeInput>
-                                            <CalendarInput key={"datekey"} icon={date} placeholder={"Date"} />
-                                            <TimeInput name={"time"} icon={time} placeholder={"Time"} />
-                                            <StringInput name={"email"} icon={gmail} placeholder={"Email"} />
+                                            <CalendarInput key={"calenar_2"} icon={date} placeholder={"Date"} />
+                                            <TimeInput key={"time_2"} name={"time"} icon={time} placeholder={"Time"} />
+                                            <StringInput key={"email_2"} name={"email"} icon={gmail} placeholder={"Email"} />
 
                                         </TripeInput>
                                         <DoubleInput>
-                                            <StringInput name={"pick_up_address"} icon={location} placeholder={"Pick Up Address"} />
-                                            <StringInput name={"phone"} icon={phone} placeholder={"Your Phone"} />
+                                            <StringInput key={"pick_up_2"} name={"pick_up_address"} icon={location} placeholder={"Pick Up Address"} />
+                                            <StringInput key={"phone_2"} name={"phone"} icon={phone} placeholder={"Your Phone"} />
 
                                         </DoubleInput>
                                         <DoubleInput>
-                                            <StringInput name={"drop_off_address"} icon={location} placeholder={"Drop-off Address"} />
-                                            <StringInput name={"name"} icon={name} placeholder={"Your Name"} />
+                                            <StringInput key={"drop_off_2"} name={"drop_off_address"} icon={location} placeholder={"Drop-off Address"} />
+                                            <StringInput key={"name_2"} name={"name"} icon={name} placeholder={"Your Name"} />
                                         </DoubleInput>
                                     </div>
                                     :
                                     <div>
                                         <div className="flex flex-col gap-6">
                                             <TripeInput>
-                                                <StringInput name={"email"} icon={gmail} placeholder={"Your Email"} />
-                                                <StringInput name={"phone"} icon={phone} placeholder={"Your Phone"} />
-                                                <StringInput name={"name"} icon={name} placeholder={"Your Name"} />
+                                                <StringInput key={"email_3"}  name={"email"} icon={gmail} placeholder={"Your Email"} />
+                                                <StringInput key={"phone_3"} name={"phone"} icon={phone} placeholder={"Your Phone"} />
+                                                <StringInput key={"name_3"} name={"name"} icon={name} placeholder={"Your Name"} />
                                             </TripeInput>
                                             <DoubleInput>
-                                                <StringInput name={"pick_up_address"} icon={location} placeholder={"Pick Up Address"} />
-                                                <CalendarInput icon={date} placeholder={"Departure Date"} />
+                                                <StringInput  key={"pick_up_3"} name={"pick_up_address"} icon={location} placeholder={"Pick Up Address"} />
+                                                <CalendarInput key={"calenar_3"} icon={date} placeholder={"Departure Date"} />
                                             </DoubleInput>
                                             <DoubleInput>
-                                                <StringInput name={"drop_off_address"} icon={location} placeholder={"Drop-off Address"} />
-                                                <TimeInput name={"time"} icon={time} placeholder={"Time"} />
+                                                <StringInput  key={"drop_off_3"} name={"drop_off_address"} icon={location} placeholder={"Drop-off Address"} />
+                                                <TimeInput key={"time_3"} name={"time"} icon={time} placeholder={"Time"} />
                                             </DoubleInput>
                                         </div>
                                     </div>
