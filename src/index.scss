@@ -222,11 +222,11 @@ h3 {
 	.ride {
 		.tabs {
 			.tab {
-	
+
 				&:nth-child(1) {
 					padding-left: 40px;
 				}
-	
+
 				&:last-child {
 					padding-right: 40px;
 				}
@@ -239,12 +239,12 @@ h3 {
 	.ride {
 		.tabs {
 			.tab {
-	
+
 				&:nth-child(1) {
 					padding-left: 0px;
 					justify-content: center;
 				}
-	
+
 				&:last-child {
 					padding-right: 0px;
 					justify-content: center;
@@ -270,7 +270,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .counter-input {
-	border-radius: 8px!important;
+	border-radius: 8px !important;
 	@apply helvetia bg-gray-50 border-0 text-blue-500 focus:outline-offset-0 focus:!outline-2 focus:outline-blue-500 focus:border-transparent text-base block w-full p-2;
 	box-shadow: 0 0 0 1px #1D1DE3;
 }
@@ -294,7 +294,6 @@ input[type="number"]::-webkit-outer-spin-button {
 	}
 }
 
-input[type='time'] {
-	-webkit-appearance: none;
+input::-webkit-date-and-time-value {
 	text-align: left;
 }
