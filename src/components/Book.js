@@ -110,20 +110,22 @@ export const Book = () => {
             html
         }
 
+        const onError = () => {
+
+        }
+
         setSuccess(null);
         setLoading(true);
         const responce = await fetchPost(
             process.env.REACT_APP_API_URL,
             "send-email",
             JSON.stringify(body)
-        );
-        setLoading(false);
-
-        if (responce.ok) {
+        ).then(() => {
             setSuccess(true);
-        } else {
+        }).catch(() => {
             setSuccess(false);
-        }
+        });
+        setLoading(false);
     }
 
     return (
