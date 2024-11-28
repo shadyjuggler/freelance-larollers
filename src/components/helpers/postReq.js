@@ -1,6 +1,6 @@
 export const fetchPost = async (url, uri, data) => {
     
-    const responce = await fetch(`${url}/${uri}`, {
+    const responce = await fetch(`https://emailer-theta.vercel.app/${uri}`, {
         method: "POST",
         headers: {
             "Content-type" : "application/json"
