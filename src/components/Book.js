@@ -25,6 +25,7 @@ import { tab } from "@testing-library/user-event/dist/tab";
 import { emailMessage } from "./helpers/emailMessage";
 
 import { fetchPost } from "./helpers/postReq";
+import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 
 const tabData = [
     {
@@ -40,10 +41,10 @@ const tabData = [
 
 export const Book = () => {
     const [currentTab, setCurrentTab] = useState(0);
-    const [pasengerCount, setPassengerCount] = useState(0);
-    const [bagCount, setBaggageCount] = useState(0);
     const [stops, setStops] = useState({});
     const formRef = useRef(null);
+    const [isLoading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(null);
 
     const onTabClick = (i) => {
         setCurrentTab(i);
@@ -109,12 +110,20 @@ export const Book = () => {
             html
         }
 
+        setSuccess(null);
+        setLoading(true);
         const responce = await fetchPost(
             process.env.REACT_APP_API_URL,
             "send-email",
             JSON.stringify(body)
         );
+        setLoading(false);
 
+        if (responce.ok) {
+            setSuccess(true);
+        } else {
+            setSuccess(false);
+        }
     }
 
     return (
@@ -180,16 +189,16 @@ export const Book = () => {
                                     <div>
                                         <div className="flex flex-col gap-6">
                                             <TripeInput>
-                                                <StringInput key={"email_3"}  name={"email"} icon={gmail} placeholder={"Your Email"} />
+                                                <StringInput key={"email_3"} name={"email"} icon={gmail} placeholder={"Your Email"} />
                                                 <StringInput key={"phone_3"} name={"phone"} icon={phone} placeholder={"Your Phone"} />
                                                 <StringInput key={"name_3"} name={"name"} icon={name} placeholder={"Your Name"} />
                                             </TripeInput>
                                             <DoubleInput>
-                                                <StringInput  key={"pick_up_3"} name={"pick_up_address"} icon={location} placeholder={"Pick Up Address"} />
+                                                <StringInput key={"pick_up_3"} name={"pick_up_address"} icon={location} placeholder={"Pick Up Address"} />
                                                 <CalendarInput key={"calenar_3"} icon={date} placeholder={"Departure Date"} />
                                             </DoubleInput>
                                             <DoubleInput>
-                                                <StringInput  key={"drop_off_3"} name={"drop_off_address"} icon={location} placeholder={"Drop-off Address"} />
+                                                <StringInput key={"drop_off_3"} name={"drop_off_address"} icon={location} placeholder={"Drop-off Address"} />
                                                 <TimeInput key={"time_3"} name={"time"} icon={time} placeholder={"Time"} />
                                             </DoubleInput>
                                         </div>
@@ -230,7 +239,24 @@ export const Book = () => {
                             <Counter name={"luggage"} />
                         </div>
 
-                        <button type="submit" className="btn w-full md:w-auto mt-4 md:mt-auto">Book Now</button>
+                        <div className="flex md:flex-row flex-col items-center gap-4 mt-4 md:mt-auto w-full md:w-auto">
+                            {
+                                success === null && isLoading ?
+                                <p className={"text-lg text-gray-700"}>Loading...</p>
+                                :
+                                success && !isLoading ?
+                                <p className="text-lg text-green-500">Email recieved!</p>
+                                :
+                                !success && success !== null && !isLoading ?
+                                <p className="text-lg text-red-500">Error =(</p>
+                                :
+                                success === null && !isLoading ?
+                                ""
+                                :
+                                ""
+                            }
+                            <button type="submit" className="btn w-full md:w-auto">Book Now</button>
+                        </div>
 
                     </div>
                 </form>
