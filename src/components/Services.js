@@ -8,7 +8,7 @@ import mapIcon from "../assets/icons/map.svg";
 
 export const Services = () => {
     return (
-        <div className="servies pb-20 lg:pb-36">
+        <div id="services" className="servies pb-20 lg:pb-36">
             <h2 className="text-4xl">Services</h2>
             <p className="mt-10 text-xl">We service all major airports LA. International airports: LAX, Burbank Bob Hop, Van Nuys Airport, SNA Airport, Long Beach Airport, Ontario Airport and all private airports</p>
             <p className="mt-4 text-xl">All major airports, pick ups require a fee that the city Of LA requires from all car service providers. If your
@@ -43,7 +43,7 @@ export const Services = () => {
                         <img src={mapIcon} className="w-50" alt="plane" />
                         <p className="max-w-52 leading-6 text-xl font-bold">Destination Tours </p>
                     </div>
-                    <button className="text-xl mt-auto lg:mx-0 w-full lg:w-fit btn">Book Now</button>
+                    <a href="#bookride" className="text-xl mt-auto lg:mx-0 w-full lg:w-fit btn">Book Now</a>
                 </div>
             </div>
         </div>

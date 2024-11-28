@@ -5,7 +5,7 @@ import humanIcon from "../assets/icons/human-white.svg";
 
 export const Promo = () => {
     return (
-        <div className="promo pb-20 lg:pb-36">
+        <div id="coverage" className="promo pb-20 lg:pb-36">
             <div className="bluebg py-10 sm:py-14 px-12 sm:px-16 rounded-2xl flex flex-wrap justify-between lg:justify-around gap-y-8 xl:justify-between">
                 <div className="flex flex-col gap-2 px-0 sm:px-4 xl:px-0 basis-full sm:basis-1/2 xl:max-w-56">
                     <div className="flex gap-6">

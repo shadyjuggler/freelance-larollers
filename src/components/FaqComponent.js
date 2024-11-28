@@ -6,23 +6,17 @@ import ddIcon from "../assets/icons/dd.svg";
 const data = {
     rows: [
         {
-            title: "Lorem ipsum dolor sit amet,",
-            content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed tempor sem. Aenean vel turpis feugiat,
-              ultricies metus at, consequat velit. Curabitur est nibh, varius in tellus nec, mattis pulvinar metus.
-              In maximus cursus lorem, nec laoreet velit eleifend vel. Ut aliquet mauris tortor, sed egestas libero interdum vitae.
-              Fusce sed commodo purus, at tempus turpis.`,
+            title: "How do I pay for my ride?",
+            content: `We accept all major credit cards with 4% processing fee. We accept cash, Venmo, or Zelle, payment must be made within 24 hours upon arrival.`,
         },
         {
-            title: "Nunc maximus, magna at ultricies elementum",
+            title: "What if my flight is delayed?",
             content:
-                "Nunc maximus, magna at ultricies elementum, risus turpis vulputate quam, vitae convallis ex tortor sed dolor.",
+                "We will always ask for your flight information when arranging an airport pickup. Our team will monitor the schedule and be there when your plane lands, whether early, late, or on time.",
         },
         {
-            title: "Curabitur laoreet, mauris vel blandit fringilla",
-            content: `Curabitur laoreet, mauris vel blandit fringilla, leo elit rhoncus nunc, ac sagittis leo elit vel lorem.
-            Fusce tempor lacus ut libero posuere viverra. Nunc velit dolor, tincidunt at varius vel, laoreet vel quam.
-            Sed dolor urna, lobortis in arcu auctor, tincidunt mattis ante. Vivamus venenatis ultricies nibh in volutpat.
-            Cras eu metus quis leo vestibulum feugiat nec sagittis lacus.Mauris vulputate arcu sed massa euismod dignissim. `,
+            title: "Can I make changes to my reservation after it has been confirmed?",
+            content: `Yes, you can make changes to your reservation at no extra cost by emailing us at larollerscarservice@gmail.com or by calling us on <p class="helvetia">+310 270-3561<p>`,
         }
     ],
 };
@@ -39,7 +33,7 @@ const styles = {
 
 export const FaqComponent = () => {
     return (
-        <div className="faq pb-20 lg:pb-36">
+        <div id="faq" className="faq pb-20 lg:pb-36">
             <h2 className="text-4xl">FAQ</h2>
             <div className="mt-8">
                 <Faq

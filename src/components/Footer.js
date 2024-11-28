@@ -15,16 +15,16 @@ export const Footer = () => {
                     <div className="basis-1/4 order-1 lg:order-2">
                         <ul className="flex flex-col gap-6 text-white font-bold text-xl">
                             <li>
-                                <a className="text-xl md:text-2xl" href="">Services</a>
+                                <a className="text-xl md:text-2xl" href="#services">Services</a>
                             </li>
                             <li>
-                                <a className="text-xl md:text-2xl" href="">Fleet</a>
+                                <a className="text-xl md:text-2xl" href="#fleet">Fleet</a>
                             </li>
                             <li>
-                                <a className="text-xl md:text-2xl" href="">Coverage <br /> Area</a>
+                                <a className="text-xl md:text-2xl" href="#coverage">Coverage <br /> Area</a>
                             </li>
                             <li>
-                                <a className="text-xl md:text-2xl" href="">FAQ</a>
+                                <a className="text-xl md:text-2xl" href="#faq">FAQ</a>
                             </li>
                         </ul>
                     </div>

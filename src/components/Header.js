@@ -9,8 +9,8 @@ export const Header = () => {
                     <h1 className=" drop-shadow-lg  text-3xl md:text-6xl text-center md:text-left text-white">LA Rollers CAR SERV LLC </h1>
                     <h3 className=" drop-shadow-lg text-xl text-white mt-16 text-center md:text-left  md:mt-28">Experience Comfort and Reliability with Our Private Car Services</h3>
                     <div className="mt-16 md:mt-28 justify-center md:justify-start flex gap-2">
-                        <button className="btn">Book Now</button>
-                        <button className="btn">Message</button>
+                        <a href="#bookride" className="btn">Book Now</a>
+                        <a href="sms:/+3102703561/&amp;body=Hello! " className="btn">Message</a>
                     </div>
                 </div>
             </div>

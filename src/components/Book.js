@@ -20,7 +20,7 @@ import { Stop } from "./Inputs/Stop";
 import { DoubleInput } from "./Layouts/DoubleInput";
 import { TripeInput } from "./Layouts/TripleInput";
 import { Counter } from "./Inputs/Counter";
-import { randomId } from "./helpers/randomId";
+import { randomId } from "../randomId";
 import { tab } from "@testing-library/user-event/dist/tab";
 import { emailMessage } from "./helpers/emailMessage";
 
@@ -110,10 +110,6 @@ export const Book = () => {
             html
         }
 
-        const onError = () => {
-
-        }
-
         setSuccess(null);
         setLoading(true);
         const responce = await fetchPost(
@@ -129,7 +125,7 @@ export const Book = () => {
     }
 
     return (
-        <div className="book py-20 lg:py-36">
+        <div id="bookride" className="book py-20 lg:py-36">
             <h2 className="text-4xl">Book your ride</h2>
 
             <div className="mt-8 ride rounded-xl p-4 sm:py-12 sm:px-12">

@@ -54,7 +54,7 @@ export const Fleet = () => {
             <div className='mt-auto flex justify-between'>
                 <p className='text-white text-md sm:text-xl font-bold'>{validNumber(passengerCount)}</p>
                 <p className='text-white text-md sm:text-xl lg:text-2xl font-bold whitespace-nowrap flex gap-2'>
-                    Book Now
+                    <a href="#bookride"> Book Now</a>
                     <img src={arrowIcon} alt="arrow-down" />
                 </p>
             </div>
@@ -64,7 +64,7 @@ export const Fleet = () => {
 
 
     return (
-        <div className="fleet pb-20 lg:pb-36">
+        <div id='fleet' className="fleet pb-20 lg:pb-36">
             <h2 className="text-4xl">Fleet</h2>
             <p className="mt-10 text-xl">Discover our range of luxury vehicles, designed to provide the ultimate travel experience. From spacious interiors to modern elegance, we have the perfect car to suit your journey!</p>
             <div className=' mt-8'>
