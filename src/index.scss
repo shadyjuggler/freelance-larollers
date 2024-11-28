@@ -295,5 +295,6 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 input[type='time'] {
+	-webkit-appearance: none;
 	text-align: left;
 }
