@@ -36,14 +36,14 @@ export const Footer = () => {
                             </li>
                             <li className="text-xl md:text-2xl flex gap-2">
                                 <img src={phone} className="w-6" alt="phone" />
-                                <span className="helvetia font-bold">+310 270-35 61</span>
+                                <a href="tel:+3102703561" className="helvetia font-bold">+310 270-35 61</a>
                             </li>
                         </ul>
                         <div className="mt-8 flex gap-8 justify-start lg:justify-end">
-                            <a href="">
+                            <a href="https://www.facebook.com/profile.php?id=61565850575310" target="_blank">
                                 <img src={facebook} alt="facebook" />
                             </a>
-                            <a href="">
+                            <a href="mailto:larollerscarservice@gmail.com">
                                 <img src={gmail} alt="facebook" />
                             </a>
                         </div>
