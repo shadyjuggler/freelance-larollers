@@ -34,6 +34,9 @@ export const Footer = () => {
                                 <img src={location} className="w-6" alt="loation" />
                                 West Hollywood, CA
                             </li>
+                            <li>
+                                <p className="helvetia">T C P 45457-B</p>
+                            </li>
                             <li className="text-xl md:text-2xl flex gap-2">
                                 <img src={phone} className="w-6" alt="phone" />
                                 <a href="tel:+3102703561" className="helvetia font-bold">+310 270-35 61</a>
