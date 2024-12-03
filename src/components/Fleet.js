@@ -1,4 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
 import arrowIcon from "../assets/icons/arrow.svg";
 
 import 'swiper/css';
@@ -74,6 +75,11 @@ export const Fleet = () => {
                     slidesPerView={1}
                     onSlideChange={() => console.log('slide change')}
                     onSwiper={(swiper) => console.log(swiper)}
+                    modules={[Autoplay]}
+                    autoplay={{
+                        delay: 10000, 
+                        disableOnInteraction: false, 
+                    }}
                 >
                     {
                         slides

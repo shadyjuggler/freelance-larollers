@@ -7,7 +7,7 @@ const data = {
     rows: [
         {
             title: "How do I pay for my ride?",
-            content: `We accept all major credit cards with 4% processing fee. We accept cash, Venmo, or Zelle, payment must be made within 24 hours upon arrival.`,
+            content: `We accept all major credit cards with <span class="helvetia">4%</span> processing fee. We accept cash, Venmo, or Zelle, payment must be made within <span class="helvetia">24</span> hours upon arrival.`,
         },
         {
             title: "What if my flight is delayed?",
@@ -16,7 +16,7 @@ const data = {
         },
         {
             title: "Can I make changes to my reservation after it has been confirmed?",
-            content: `Yes, you can make changes to your reservation at no extra cost by emailing us at larollerscarservice@gmail.com or by calling us on <p class="helvetia">+310 270-3561<p>`,
+            content: `Yes, you can make changes to your reservation at no extra cost by emailing us at larollerscarservice@gmail.com or by calling us on <span class="helvetia">+310 270-3561<span>`,
         }
     ],
 };
